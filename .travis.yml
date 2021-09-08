@@ -1,0 +1,12 @@
+language: generic
+
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t training/docker-react -f Dockerfile.dev .
+
+#Commands to run when test suite is executed
+script:
+  - docker run -e CI=true training/docker-react npm run test
